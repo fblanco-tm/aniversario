@@ -176,8 +176,8 @@ body {
 }
 
 .envelope {
-    width: 120px;
-    height: 85px;
+    width: 250px;
+    height: 150px;
     background-color: #dfcfc2;
     position: relative;
     cursor: pointer;
@@ -200,9 +200,9 @@ body {
     left: 0;
     width: 0;
     height: 0;
-    border-left: 60px solid transparent;
-    border-right: 60px solid transparent;
-    border-top: 45px solid #c9b6a6;
+    border-left: 125px solid transparent;
+    border-right: 125px solid transparent;
+    border-top: 80px solid #c9b6a6;
     transform-origin: top;
     transition: transform 0.4s ease-in-out;
 }
@@ -213,7 +213,7 @@ body {
 }
 
 .envelope-heart {
-    font-size: 1.5rem;
+    font-size: 5rem;
     color: #a83232;
     z-index: 5;
     animation: pulse 1.5s infinite;
@@ -226,7 +226,7 @@ body {
 }
 
 .envelope-text-hint {
-    font-size: 0.85rem;
+    font-size: 1.2 rem;
     color: #8c7a70;
     font-style: italic;
     margin-bottom: 10px;
@@ -259,6 +259,7 @@ body {
     text-align: center;
     margin: 20px 0 15px 0;
     font-size: 1rem;
+    font-style: italic;
 }
 
 .yes-btn {
@@ -347,11 +348,13 @@ body {
 }
 
 .footer-tag {
-    font-size: 0.7rem;
+    font-size: 1rem;
     letter-spacing: 2px;
-    color: #b0a49d;
+    color: #8a7265;
     text-transform: uppercase;
     margin-top: 15px;
+    font-weight: bold;
+
 }
 
 /* --- EFECTO LLUVIA DE CORAZONES --- */
