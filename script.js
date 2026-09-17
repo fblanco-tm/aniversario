@@ -27,7 +27,7 @@ function currentSlide(index) {
 setInterval(() => {
     currentIndex = (currentIndex + 1) % totalSlides;
     updateCarousel();
-}, 4000);
+}, 3000);
 
 // --- LÓGICA DE LA CARTA ---
 function openLetter() {
@@ -44,8 +44,8 @@ function openLetter() {
 
 // --- LÓGICA DE LLUVIA DE CORAZONES (Duración exacta de 2 segundos) ---
 function triggerHeartRain() {
-    const duration = 2000; // 2 segundos
-    const animationInterval = 100; // Frecuencia de generación de corazones
+    const duration = 7000; // 7 segundos
+    const animationInterval = 20; // Frecuencia de generación de corazones
     const endTime = Date.now() + duration;
 
     const interval = setInterval(() => {
@@ -83,7 +83,7 @@ function createHeart() {
 // --- LÓGICA DEL CONTADOR DE TIEMPO ---
 function updateCounter() {
     // Fecha de inicio de noviazgo (28 de septiembre de 2023)
-    const startDate = new Date(2023, 8, 28); // Mes 8 en JS es septiembre (0-indexed)
+    const startDate = new Date(2009, 8, 28); // Mes 8 en JS es septiembre (0-indexed)
     const now = new Date();
 
     let years = now.getFullYear() - startDate.getFullYear();
