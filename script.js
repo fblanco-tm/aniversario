@@ -126,7 +126,7 @@ function createHeart() {
 
 // --- LÓGICA DEL CONTADOR DE TIEMPO ---
 function updateCounter() {
-    const startDate = new Date(2023, 8, 28); // 28 de septiembre de 2023
+    const startDate = new Date(2009, 8, 28); // 28 de septiembre de 2023
     const now = new Date();
 
     let years = now.getFullYear() - startDate.getFullYear();
