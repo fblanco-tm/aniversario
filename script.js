@@ -1,12 +1,39 @@
+// --- API DE YOUTUBE PARA AUDIO DE FONDO ---
+let player;
+
+// Esta función la llama automáticamente YouTube cuando carga su librería
+function onYouTubeIframeAPIReady() {
+    player = new YT.Player('youtube-audio-container', {
+        height: '0',
+        width: '0',
+        videoId: 'MTwrIg6ET1k', // El ID de tu video que tenías en el enlace
+        playerVars: {
+            'autoplay': 0, // Inicia pausado por las políticas del navegador
+            'loop': 1,
+            'playlist': 'MTwrIg6ET1k'
+        },
+        events: {
+            'onReady': (event) => {
+                // El reproductor está listo
+            }
+        }
+    });
+}
+
+// Cargar la librería de la API de YouTube de forma asíncrona
+const tag = document.createElement('script');
+tag.src = "https://www.youtube.com/iframe_api";
+const firstScriptTag = document.getElementsByTagName('script')[0];
+firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 // Transición de la vista de inicio a la sección principal
 function startExperience() {
     document.getElementById('welcome-view').classList.remove('active');
     document.getElementById('main-view').classList.add('active');
     updateCounter(); // Calcular el tiempo transcurrido al entrar
-        // Activar el audio de YouTube al presionar Iniciar
-    const iframe = document.getElementById('youtube-audio');
-    // Forzamos la recarga del src para asegurar que empiece a reproducirse tras el clic
-    iframe.src = iframe.src; 
+// Reproducir el audio justo cuando el usuario hace clic en "Iniciar"
+    if (player && typeof player.playVideo === 'function') {
+        player.playVideo();
+    }
 }
 
 // --- LÓGICA DEL CARRUSEL DE FOTOS ---
