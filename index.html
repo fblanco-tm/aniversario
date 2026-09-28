@@ -1,70 +1,75 @@
 <!doctype html>
 <html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Nuestro Aniversario</title>
-    <!-- Fuentes de Google Fonts -->
-    <link
-      href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;500;600&display=swap"
-      rel="stylesheet"
-    />
-    <!-- Archivo CSS externo -->
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
-      <!-- Reproductor de YouTube oculto para el audio de fondo -->
-  <!-- Contenedor oculto para la API de YouTube -->
-<div id="youtube-audio-container" style="display:none;"></div>
-    <div class="phone-container">
-      <!-- VISTA 1: INICIO -->
-      <div id="welcome-view" class="view active">
-        <h1 class="welcome-text">Para el amor de mi vida</h1>
-        <button class="start-btn" onclick="startExperience()">Te Amo..</button>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nuestro Aniversario</title>
+  <!-- Fuentes de Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;500;600&display=swap"
+    rel="stylesheet" />
+  <!-- Archivo CSS externo -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <!-- Reproductor de YouTube oculto para el audio de fondo -->
+  <div style="display: none;">
+    <iframe id="youtube-audio" width="0" height="0"
+      src="https://www.youtube.com/embed/MTwrIg6ETlk?enablejsapi=1&autoplay=1&loop=1&playlist=MTwrIg6ETlk"
+      title="Audio de fondo" frameborder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture">
+    </iframe>
+  </div>
+  <div class="phone-container">
+    <!-- VISTA 1: INICIO -->
+    <div id="welcome-view" class="view active">
+      <h1 class="welcome-text">Para el amor de mi vida</h1>
+      <button class="start-btn" onclick="startExperience()">Te Amo..</button>
+    </div>
+
+    <!-- VISTA 2: CONTENIDO PRINCIPAL -->
+    <div id="main-view" class="view">
+      <!-- Fecha -->
+      <h3 class="couple-names">28 de septiembre de 2026</h3>
+
+      <!-- Carrusel de 3 fotos de portada -->
+      <div class="carousel-container">
+        <div class="carousel-track" id="carouselTrack">
+          <div class="carousel-slide">
+            <img src="imagenes/imagen1.jpeg" alt="Foto 1" />
+          </div>
+          <div class="carousel-slide">
+            <img src="imagenes/imagen2.jpeg" alt="Foto 2" />
+          </div>
+          <div class="carousel-slide">
+            <img src="imagenes/imagen3.jpeg" alt="Foto 3" />
+          </div>
+        </div>
       </div>
 
-      <!-- VISTA 2: CONTENIDO PRINCIPAL -->
-      <div id="main-view" class="view">
-        <!-- Fecha -->
-        <h3 class="couple-names">28 de septiembre de 2026</h3>
+      <!-- Puntos indicadores -->
+      <div class="carousel-dots">
+        <span class="dot active" onclick="currentSlide(0)"></span>
+        <span class="dot" onclick="currentSlide(1)"></span>
+        <span class="dot" onclick="currentSlide(2)"></span>
+      </div>
 
-        <!-- Carrusel de 3 fotos de portada -->
-        <div class="carousel-container">
-          <div class="carousel-track" id="carouselTrack">
-            <div class="carousel-slide">
-              <img src="imagenes/imagen1.jpeg" alt="Foto 1" />
-            </div>
-            <div class="carousel-slide">
-              <img src="imagenes/imagen2.jpeg" alt="Foto 2" />
-            </div>
-            <div class="carousel-slide">
-              <img src="imagenes/imagen3.jpeg" alt="Foto 3" />
-            </div>
-          </div>
+      <!-- Nombres personalizados -->
+      <h3 class="couple-names">Rosa Linda & Fernando</h3>
+
+      <!-- Carta Personalizada -->
+      <div class="envelope-container">
+        <p class="envelope-text-hint">Hay algo dentro para ti....</p>
+        <p class="envelope-text-hint">Abrir</p>
+        <div class="envelope" id="envelope" onclick="openLetter()">
+          <div class="envelope-flap"></div>
+          <div class="envelope-heart">❤</div>
         </div>
 
-        <!-- Puntos indicadores -->
-        <div class="carousel-dots">
-          <span class="dot active" onclick="currentSlide(0)"></span>
-          <span class="dot" onclick="currentSlide(1)"></span>
-          <span class="dot" onclick="currentSlide(2)"></span>
-        </div>
-
-        <!-- Nombres personalizados -->
-        <h3 class="couple-names">Rosa Linda  & Fernando</h3>
-
-        <!-- Carta Personalizada -->
-        <div class="envelope-container">
-          <p class="envelope-text-hint">Hay algo dentro para ti....</p>
-          <p class="envelope-text-hint">Presiona para Abrir</p>
-          <div class="envelope" id="envelope" onclick="openLetter()">
-            <div class="envelope-flap"></div>
-            <div class="envelope-heart">❤</div>
-          </div>
-
-          <!-- Texto de la Carta que se despliega -->
-          <div class="letter-content" id="letterContent">
-            <p>
+        <!-- Texto de la Carta que se despliega -->
+        <div class="letter-content" id="letterContent">
+          <p>
               Hoy no es un dia cualquiera, hoy celebramos todo lo que hemos
               vivido, pero, sobre todo, todo lo que aún nos queda por vivir.
             </p>
@@ -80,49 +85,50 @@
               Fernando B.
             </p>
 
-            <div class="question">
-              ¿Te gustaría seguir escribiendo nuestra historia?
-            </div>
-            <button class="yes-btn" onclick="triggerHeartRain()">
-              Sí Quiero 🤍
-            </button>
+          <div class="question">
+            ¿Te gustaría seguir escribiendo nuestra historia?
           </div>
+          <button class="yes-btn" onclick="triggerHeartRain()">
+            Sí, quiero 🤍
+          </button>
         </div>
-
-        <!-- Contador de tiempo (Desde el 28-09-2023 hasta la fecha actual) -->
-        <div class="counter-section">
-          <p class="counter-title">Hoy es un día mas y...</p>
-          <p class="counter-title">Han sido los mejores</p>
-          <div class="counter-grid">
-            <div class="counter-box">
-              <span class="counter-number" id="years">0</span>
-              <span class="counter-label">Años</span>
-            </div>
-            <div class="counter-box">
-              <span class="counter-number" id="months">0</span>
-              <span class="counter-label">Meses</span>
-            </div>
-            <div class="counter-box">
-              <span class="counter-number" id="days">0</span>
-              <span class="counter-label">Días</span>
-            </div>
-          </div>
-          <p class="counter-title">de mi vida</p>
-        </div>
-
-        <!-- Foto Final con Mensaje -->
-        <div class="final-photo-container">
-          <img src="imagenes/imagen5.jpeg" alt="Foto final" />
-        </div>
-
-        <h3 class="final-message">Gracias por compartir</h3>
-        <h3 class="final-message">Tu vida conmigo</h3>
-
-        <div class="footer-tag">TE AMO MUCHO...</div>
       </div>
-    </div>
 
-    <!-- Archivo JS externo -->
-    <script src="script.js"></script>
-  </body>
+      <!-- Contador de tiempo (Desde el 28-09-2023 hasta la fecha actual) -->
+      <div class="counter-section">
+        <p class="counter-title">Hoy es un dia mas y...</p>
+        <p class="counter-title">Han sido los mejores</p>
+        <div class="counter-grid">
+          <div class="counter-box">
+            <span class="counter-number" id="years">0</span>
+            <span class="counter-label">Años</span>
+          </div>
+          <div class="counter-box">
+            <span class="counter-number" id="months">0</span>
+            <span class="counter-label">Meses</span>
+          </div>
+          <div class="counter-box">
+            <span class="counter-number" id="days">0</span>
+            <span class="counter-label">Días</span>
+          </div>
+        </div>
+        <p class="counter-title">de mi vida</p>
+      </div>
+
+      <!-- Foto Final con Mensaje -->
+      <div class="final-photo-container">
+        <img src="imagenes/imagen5.jpeg" alt="Foto final" />
+      </div>
+
+      <h3 class="final-message">Gracias por compartir</h3>
+      <h3 class="final-message">Tu vida conmigo</h3>
+
+      <div class="footer-tag">TE AMO MUCHO...</div>
+    </div>
+  </div>
+
+  <!-- Archivo JS externo -->
+  <script src="script.js"></script>
+</body>
+
 </html>
