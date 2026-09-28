@@ -14,13 +14,8 @@
   </head>
   <body>
       <!-- Reproductor de YouTube oculto para el audio de fondo -->
-  <div style="display: none;">
-    <iframe id="youtube-audio" width="0" height="0"
-      src="https://www.youtube.com/embed/MTwrIg6ETlk?enablejsapi=1&autoplay=1&loop=1&playlist=MTwrIg6ETlk"
-      title="Audio de fondo" frameborder="0"
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture">
-    </iframe>
-  </div>
+  <!-- Contenedor oculto para la API de YouTube -->
+<div id="youtube-audio-container" style="display:none;"></div>
     <div class="phone-container">
       <!-- VISTA 1: INICIO -->
       <div id="welcome-view" class="view active">
