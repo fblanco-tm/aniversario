@@ -3,6 +3,10 @@ function startExperience() {
     document.getElementById('welcome-view').classList.remove('active');
     document.getElementById('main-view').classList.add('active');
     updateCounter(); // Calcular el tiempo transcurrido al entrar
+        // Activar el audio de YouTube al presionar Iniciar
+    const iframe = document.getElementById('youtube-audio');
+    // Forzamos la recarga del src para asegurar que empiece a reproducirse tras el clic
+    iframe.src = iframe.src; 
 }
 
 // --- LÓGICA DEL CARRUSEL DE FOTOS ---
