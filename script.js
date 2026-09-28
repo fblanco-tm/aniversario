@@ -6,15 +6,16 @@ function onYouTubeIframeAPIReady() {
     player = new YT.Player('youtube-audio-container', {
         height: '0',
         width: '0',
-        videoId: 'MTwrIg6ET1k', // El ID de tu video que tenías en el enlace
+        videoId: 'MTwrIg6ET1k', // El ID de tu video
         playerVars: {
-            'autoplay': 0, // Inicia pausado por las políticas del navegador
+            'autoplay': 0, 
             'loop': 1,
             'playlist': 'MTwrIg6ET1k'
         },
         events: {
             'onReady': (event) => {
-                // El reproductor está listo
+                // El reproductor ya está cargado y listo
+                console.log("Reproductor listo");
             }
         }
     });
@@ -25,14 +26,30 @@ const tag = document.createElement('script');
 tag.src = "https://www.youtube.com/iframe_api";
 const firstScriptTag = document.getElementsByTagName('script')[0];
 firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
 // Transición de la vista de inicio a la sección principal
 function startExperience() {
     document.getElementById('welcome-view').classList.remove('active');
     document.getElementById('main-view').classList.add('active');
     updateCounter(); // Calcular el tiempo transcurrido al entrar
-// Reproducir el audio justo cuando el usuario hace clic en "Iniciar"
+
+    // Reproducir el audio justo cuando el usuario hace clic en "Iniciar"
     if (player && typeof player.playVideo === 'function') {
         player.playVideo();
+        // Forzar volumen al máximo por seguridad
+        if (player.setVolume) {
+            player.setVolume(100);
+        }
+    } else {
+        // Por si acaso la API tardó un segundo más en conectar con GitHub Pages
+        setTimeout(() => {
+            if (player && typeof player.playVideo === 'function') {
+                player.playVideo();
+                if (player.setVolume) {
+                    player.setVolume(100);
+                }
+            }
+        }, 1000);
     }
 }
 
@@ -43,6 +60,7 @@ const dots = document.querySelectorAll('.dot');
 const totalSlides = 3;
 
 function updateCarousel() {
+    if (!track) return;
     track.style.transform = `translateX(-${currentIndex * 100}%)`;
     dots.forEach((dot, index) => {
         dot.classList.toggle('active', index === currentIndex);
@@ -58,7 +76,7 @@ function currentSlide(index) {
 setInterval(() => {
     currentIndex = (currentIndex + 1) % totalSlides;
     updateCarousel();
-}, 3000);
+}, 4000);
 
 // --- LÓGICA DE LA CARTA ---
 function openLetter() {
@@ -68,15 +86,14 @@ function openLetter() {
     envelope.classList.add('open');
     setTimeout(() => {
         letterContent.style.display = 'block';
-        // Hacer scroll suave hacia la carta desplegada
         letterContent.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     }, 300);
 }
 
 // --- LÓGICA DE LLUVIA DE CORAZONES (Duración exacta de 2 segundos) ---
 function triggerHeartRain() {
-    const duration = 7000; // 7 segundos
-    const animationInterval = 20; // Frecuencia de generación de corazones
+    const duration = 2000; 
+    const animationInterval = 100; 
     const endTime = Date.now() + duration;
 
     const interval = setInterval(() => {
@@ -93,19 +110,15 @@ function createHeart() {
     heart.classList.add('heart-rain');
     heart.innerHTML = ['❤️', '💖', '💕', '🤍', '✨'][Math.floor(Math.random() * 5)];
     
-    // Posición horizontal aleatoria dentro de la pantalla
     heart.style.left = Math.random() * 100 + 'vw';
     
-    // Duración de caída aleatoria rápida (entre 1s y 1.8s)
     const fallDuration = Math.random() * 0.8 + 1;
     heart.style.animationDuration = fallDuration + 's';
     
-    // Tamaño aleatorio
     heart.style.fontSize = (Math.random() * 1 + 1) + 'rem';
 
     document.body.appendChild(heart);
 
-    // Eliminar el elemento del DOM al terminar la animación
     setTimeout(() => {
         heart.remove();
     }, fallDuration * 1000);
@@ -113,8 +126,7 @@ function createHeart() {
 
 // --- LÓGICA DEL CONTADOR DE TIEMPO ---
 function updateCounter() {
-    // Fecha de inicio de noviazgo (28 de septiembre de 2023)
-    const startDate = new Date(2009, 8, 28); // Mes 8 en JS es septiembre (0-indexed)
+    const startDate = new Date(2023, 8, 28); // 28 de septiembre de 2023
     const now = new Date();
 
     let years = now.getFullYear() - startDate.getFullYear();
@@ -132,8 +144,11 @@ function updateCounter() {
         months += 12;
     }
 
-    // Actualizar los elementos en el HTML
-    document.getElementById('years').innerText = years;
-    document.getElementById('months').innerText = months;
-    document.getElementById('days').innerText = days;
+    const yearsEl = document.getElementById('years');
+    const monthsEl = document.getElementById('months');
+    const daysEl = document.getElementById('days');
+
+    if (yearsEl) yearsEl.innerText = years;
+    if (monthsEl) monthsEl.innerText = months;
+    if (daysEl) daysEl.innerText = days;
 }
